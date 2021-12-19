@@ -51,7 +51,7 @@ class UserController extends Controller
                 'email' => ['required', 'email'],
                 'password' => ['required'],
             ]);
-    
+
             $credentials = request(['email', 'password']);
             if(!Auth::attempt($credentials)){
                 return ResponseFormatter::error(['message'=> 'Unauthorized'], 'Authentication Failed', 500);
@@ -71,7 +71,7 @@ class UserController extends Controller
                 'token_type' => 'Bearer',
                 'user'=> $user,
             ],'Authenticated');
-            
+
         } catch (Exception $error) {
             return ResponseFormatter::error(['message'=> 'Something went wrong', 'error'=> $error], 'Authentication Failed', 500);
         }
